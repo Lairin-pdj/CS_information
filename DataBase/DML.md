@@ -2,4 +2,5 @@
 
 insert
 update
+select
 delete
