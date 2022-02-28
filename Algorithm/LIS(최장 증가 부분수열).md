@@ -3,21 +3,18 @@
 ### 1. dp(n^2)  
 각 위치마다 이어지는 값을 전부 계산하는 방식 
 ```cpp
-int d[n + 1] = {0, };
-d[0] = 1;
+int d[n + 1] = {1, 0,};
 int answer = 0;
 for (int i = 1; i < n; i++) {
     int temp = 0;
-for (int j = 0; j < i; j++) {
-  if (vec[j].second < vec[i].second) {
-      temp = max(temp, d[j]);
-  }
+    for (int j = 0; j < i; j++) {
+        if (vec[j].second < vec[i].second) {
+            temp = max(temp, d[j]);
+        }
+    }
+    d[i] = temp + 1;
+    answer = max(answer, d[i]);
 }
-d[i] = temp + 1;
-answer = max(answer, d[i]);
-}
-
-cout << n - answer << "\n";
 ```
   
 ### 2. 이분탐색(nlogn)  
@@ -30,7 +27,6 @@ for a, b in lines:
         lis.append(b)
     else:
         lis[idx] = b
-    print(lis)
 ```
   
   
