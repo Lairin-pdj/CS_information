@@ -29,6 +29,15 @@ for a in lines:
         lis[idx] = a
 ```
   
+### 최장수열 자체가 필요한 경우  
+이분탐색에서 각 idx를 저장하는 배열을 확인하여 역추적이 가능  
+```python
+for i in range(n - 1, -1, -1):
+    if index[i] == temp:
+        answer.append(lines[i])
+        temp -= 1
+```
+  
   
 ### 관련 문제 
 - 2565_전깃줄
