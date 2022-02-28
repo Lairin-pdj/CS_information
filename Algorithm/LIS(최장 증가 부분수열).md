@@ -21,12 +21,12 @@ for (int i = 1; i < n; i++) {
 길이만을 체크할 때 좋은 방법
 ```python
 lis = []
-for a, b in lines:
-    idx = bisect.bisect_left(lis, b)
+for a in lines:
+    idx = bisect.bisect_left(lis, a)
     if idx >= len(lis):
-        lis.append(b)
+        lis.append(a)
     else:
-        lis[idx] = b
+        lis[idx] = a
 ```
   
   
