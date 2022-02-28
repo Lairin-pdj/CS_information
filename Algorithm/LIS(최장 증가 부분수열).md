@@ -24,7 +24,7 @@ cout << n - answer << "\n";
 길이만을 체크할 때 좋은 방법
 ```python
 lis = []
-for i, (a, b) in enumerate(lines):
+for a, b in lines:
     idx = bisect.bisect_left(lis, b)
     if idx >= len(lis):
         lis.append(b)
@@ -33,6 +33,7 @@ for i, (a, b) in enumerate(lines):
     print(lis)
 ```
   
-관련 문제 
+  
+### 관련 문제 
 - 2565_전깃줄
 - 2568_전깃줄-2
