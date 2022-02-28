@@ -1,7 +1,7 @@
 ## Longest Increasing Subsequence(최장 증가 부분수열)
 
 ### 1. dp(n^2)  
-각 위치마다 이어지는 값을 전부 계산하는 방식 
+각 위치마다 전 값을 비교하며 갱신해나가는 방법
 ```cpp
 int d[n + 1] = {1, 0,};
 int answer = 0;
@@ -18,7 +18,8 @@ for (int i = 1; i < n; i++) {
 ```
   
 ### 2. 이분탐색(nlogn)  
-길이만을 체크할 때 좋은 방법
+이분탐색을 이용하여 lis 배열에서의 위치를 체크하는 방식
+lis 배열은 실제 LIS와는 다르므로 실제 LIS를 알고 싶은 경우 추가적인 코드가 필요하다.
 ```python
 lis = []
 for a in lines:
@@ -29,7 +30,7 @@ for a in lines:
         lis[idx] = a
 ```
   
-### 최장수열 자체가 필요한 경우  
+### *최장수열을 알고싶은 경우 
 이분탐색에서 각 idx를 저장하는 배열을 확인하여 역추적이 가능  
 ```python
 for i in range(n - 1, -1, -1):
@@ -38,6 +39,18 @@ for i in range(n - 1, -1, -1):
         temp -= 1
 ```
   
+### *최장수열 갯수가 알고싶은 경우
+2차원 배열 및 이분탐색을 통해 가능한 경우의 수를 체크하는 것이 가능
+```python
+dp = [[0] for _ in range(len(lis))]
+for i in range(n - 1, -1, -1):
+    target = 1
+    if index[i] + 1 < len(lis):
+        temp = bisect.bisect_right(dic[index[i] + 1], lines[i])
+        target = dp[index[i] + 1][-1] - dp[index[i] + 1][temp]
+    dic[index[i]].append(lines[i])
+    dp[index[i]].append((target + dp[index[i]][-1]))
+```
   
 ### 관련 문제 
 - 2565_전깃줄
@@ -50,3 +63,4 @@ for i in range(n - 1, -1, -1):
 - 12738_가장 긴 증가하는 부분 수열 3
 - 14002_가장 긴 증가하는 부분 수열 4
 - 14003_가장 긴 증가하는 부분 수열 5
+- 17411_가장 긴 증가하는 부분 수열 6
