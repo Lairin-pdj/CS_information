@@ -25,3 +25,6 @@ while queue:
             check.add((ax, ay))
             queue.append([(ax, ay)])
 ```
+  
+### 관련문제
+* 16236_아기 상어
