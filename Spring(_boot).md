@@ -5,8 +5,9 @@ Java 기반의 web application framework
 - 전체적인 Java 객체들과 라이브러리를 관리합니다.
 - 기본적으로 MVC(Model, View, Control)패턴으로 구현됩니다.
 - 객체를 통해 데이터를 서로 주고 받거나 접근합니다.
+  
+* Spring structure
 ![image](https://user-images.githubusercontent.com/70496139/156914546-455e8d6f-eec2-423a-ba3c-cd96e31d8683.png)  
-     spring structure
   
   
 ### 2. Sprint boot란?
