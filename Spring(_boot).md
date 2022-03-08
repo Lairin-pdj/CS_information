@@ -27,14 +27,17 @@ Java 기반의 web application framework
 ### 5. Maven과 Gradle
 둘 다 기본적으로 빌드 자동화 도구입니다.  
 다양한 라이브러리 관리 및 의존성 처리를 간단하게 할 수 있도록 도와줍니다.  
-* Maven
-Maven의 경우 Spring에서 주로 사용됩니다.  
+* Maven의 경우 Spring에서 주로 사용됩니다.  
 라이프사이클이라는 미리 정의된 빌드 순서가 있습니다.  
-* Gradle
-Gradle의 경우는 Sprintboot와 안드로이드 등에서 사용됩니다.  
+* Gradle의 경우는 Sprintboot와 안드로이드 등에서 사용됩니다.  
 Ant와 Groovy를 기반으로 제작되어 관련 기능들을 모두 사용 가능합니다.  
 Maven과 달리 스크립트를 지원하여 자유로운 로직 구성이 가능합니다.
 시기적으로 Maven보다 늦게 나오며 전체적으로 좋은 성능을 보여줍니다.
   
   
 ### 6. JDBC와 JPA
+JDBC와 JPA는 모두 DB의 데이터를 좀 더 편리하게 처리하기 위한 방식입니다.
+Java의 객체와 DB의 관계를 매핑해주는 ORM(Object-relational mapping)을 기반으로 작동합니다.
+JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을 도와줍니다.  
+이를 좀 더 쉽게 할 수 있도록 JPA(Java Persistence API)를 사용합니다.
+![image](https://user-images.githubusercontent.com/70496139/157149518-97fedf4d-0ba9-4155-bf75-e777ab92b44c.png)
