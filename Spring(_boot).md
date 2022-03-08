@@ -40,4 +40,4 @@ JDBC와 JPA는 모두 DB의 데이터를 좀 더 편리하게 처리하기 위�
 Java의 객체와 DB의 관계를 매핑해주는 ORM(Object-relational mapping)을 기반으로 작동합니다.  
 JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을 도와줍니다.  
 이를 좀 더 쉽게 할 수 있도록 JPA(Java Persistence API)를 사용합니다.  
-<img src="https://user-images.githubusercontent.com/70496139/157149518-97fedf4d-0ba9-4155-bf75-e777ab92b44c.png" width="70%"/>
+<img src="https://user-images.githubusercontent.com/70496139/157149518-97fedf4d-0ba9-4155-bf75-e777ab92b44c.png" width="50%"/>
