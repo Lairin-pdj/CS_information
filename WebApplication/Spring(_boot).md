@@ -41,3 +41,7 @@ Java의 객체와 DB의 관계를 매핑해주는 ORM(Object-relational mapping)
 JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을 도와줍니다.  
 이를 좀 더 쉽게 할 수 있도록 JPA(Java Persistence API)를 사용합니다.  
 <img src="https://user-images.githubusercontent.com/70496139/157149518-97fedf4d-0ba9-4155-bf75-e777ab92b44c.png" width="60%"/>
+  
+  
+### 7. JPA와 Flyway
+둘 다 엔티티 마이그레이션 자동화를 통해 편의성을 도와주는 API이다. 
