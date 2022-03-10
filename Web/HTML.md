@@ -27,3 +27,25 @@
   
   
 ### 2. 태그
+* head
+* meta
+* title
+* link
+* body
+* span, a, h(n)
+* div
+* table
+* input
+* output
+* form
+* button
+* dialog
+* script
+
+### 3. 옵션
+* onclick
+* style
+* id
+* class
+* type
+* name
