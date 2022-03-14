@@ -10,12 +10,13 @@ Java 기반의 web application framework
 
 - 객체를 통해 데이터를 서로 주고 받거나 접근합니다.
 
-  
+<br><br>
 
 ### 2. Spring structure  
 
 ![image](https://user-images.githubusercontent.com/70496139/156914546-455e8d6f-eec2-423a-ba3c-cd96e31d8683.png)  
 
+<br><br>
 
 ### 3. Sprint boot란?
 
@@ -25,7 +26,7 @@ Java 기반의 web application framework
 
 * 현재 대부분의 Spring 개발자는 이를 이용하여 개발함    
 
-  
+<br><br>
 
 ### 4. DAO, DTO, VO
 
@@ -43,7 +44,7 @@ Java 기반의 web application framework
 
 * VO(Value Object) : 변하지 않는 고정 값을 지니는 객체
 
-  
+<br><br>  
 
 ### 5. Maven과 Gradle
 
@@ -58,7 +59,7 @@ Java 기반의 web application framework
   Maven과 달리 스크립트를 지원하여 자유로운 로직 구성이 가능합니다.
   시기적으로 Maven보다 늦게 나오며 전체적으로 좋은 성능을 보여줍니다.
 
-  
+<br><br>  
 
 ### 6. JDBC와 JPA
 
@@ -72,9 +73,8 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
 
   Entity함수에 Column 어노테이션을 사용하여 세부 내용을 작성한 뒤 Repo의 인터페이스에서 해당 Entity를 템플릿으로 사용하여 JPA를 extends 하여 사용한다.  
   전체적으로 많은 부분이 자동화되어 처리해주나 필요한 경우 class로 추가 상속하여 함수들을 오버라이딩 하는 것 또한 가능하다.
-
   
-
+<br><br>
 
 ### 7. Flyway
 
