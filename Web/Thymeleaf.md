@@ -4,6 +4,7 @@
 
 Thymeleaf는 View Template의 일종으로 컨트롤러가 보내주는 동적인 모델을 매핑하여 보여주는 역할을 합니다.
 
+​    
 
 
 ### 2. 프로젝트 적용법
@@ -16,6 +17,7 @@ dependencies {
 	}
 ```
 
+  
 
 
 ### 3. 사용방법
@@ -66,6 +68,7 @@ public String list(Model model) {
 </html>
 ```
 
+  
 
 
 ### 4. 문법
