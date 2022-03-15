@@ -104,9 +104,9 @@ form submit와 유사한 형태의 구조로 url을 생성하여 전송합니다
 
 ```java
 @PostMapping("/card/test")
-  public void test(HttpServletResponse response, CardDto cardDto) {
-      cardService.addCard(cardMapper.toEntity(cardDto));
-  }
+public void test(HttpServletResponse response, CardDto cardDto) {
+    cardService.addCard(cardMapper.toEntity(cardDto));
+}
 ```
 
 여기서 중요한 점은 파라미터에 `HttpServletResponse response`를 추가하여야 return 형식이 void여도 에러없이 작동한다는 부분입니다.
