@@ -10,13 +10,13 @@ Java 기반의 web application framework
 
 - 객체를 통해 데이터를 서로 주고 받거나 접근합니다.
 
-<br><br>
+<br>
 
 ### 2. Spring structure  
 
 ![image](https://user-images.githubusercontent.com/70496139/156914546-455e8d6f-eec2-423a-ba3c-cd96e31d8683.png)  
 
-<br><br>
+<br>
 
 ### 3. Sprint boot란?
 
@@ -26,7 +26,7 @@ Java 기반의 web application framework
 
 * 현재 대부분의 Spring 개발자는 이를 이용하여 개발함    
 
-<br><br>
+<br>
 
 ### 4. DAO, DTO, VO
 
@@ -44,7 +44,7 @@ Java 기반의 web application framework
 
 * VO(Value Object) : 변하지 않는 고정 값을 지니는 객체
 
-<br><br>  
+<br>
 
 ### 5. Maven과 Gradle
 
@@ -59,7 +59,7 @@ Java 기반의 web application framework
   Maven과 달리 스크립트를 지원하여 자유로운 로직 구성이 가능합니다.
   시기적으로 Maven보다 늦게 나오며 전체적으로 좋은 성능을 보여줍니다.
 
-<br><br>  
+<br>
 
 ### 6. JDBC와 JPA
 
@@ -74,9 +74,39 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
   Entity함수에 Column 어노테이션을 사용하여 세부 내용을 작성한 뒤 Repo의 인터페이스에서 해당 Entity를 템플릿으로 사용하여 JPA를 extends 하여 사용한다.  
   전체적으로 많은 부분이 자동화되어 처리해주나 필요한 경우 class로 추가 상속하여 함수들을 오버라이딩 하는 것 또한 가능하다.
   
-<br><br>
+
+<br>
 
 ### 7. Flyway
 
 Entity migration 자동화를 통해 편의성을 도와주는 API입니다.  
 정해진 version 파일을 통해 Entity의 변화를 기록하며 수정할 수 있습니다.
+
+<br>
+
+### 8. AJAX
+
+spring boot에서 서버와 비동기식 통신을 위해 AJAX를 이용할 수 있습니다.
+
+기본적인 AJAX 이용법에서 vanilla JS를 통해 POST를 전송하는 방법은 다음과 같습니다.
+
+```javascript
+httpRequest.open('POST', '/card/test' +
+    '?category=' + category.value +
+    '&question=' + question.value +
+    '&answer=' + answer.value +
+    '&tags=' + tags.value);
+```
+
+form submit와 유사한 형태의 구조로 url을 생성하여 전송합니다.
+
+전송된 요청을 컨트롤러에서 처리할 수 있도록 @PostMapping으로 이어주면 작동하는 것이 가능합니다. 
+
+```java
+@PostMapping("/card/test")
+    public void test(HttpServletResponse response, CardDto cardDto) {
+        cardService.addCard(cardMapper.toEntity(cardDto));
+    }
+```
+
+여기서 중요한 점은 파라미터에 `HttpServletResponse response`를 추가하여야 return 형식이 void여도 에러없이 작동한다는 부분입니다.
