@@ -80,15 +80,17 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
 ### 7. Flyway
 
 Entity migration 자동화를 통해 편의성을 도와주는 API입니다.  
-정해진 version 파일을 통해 Entity의 변화를 기록하며 수정할 수 있습니다.
+정해진 version 파일을 통해 Entity의 변화를 기록하며 수정할 수 있습니다.  
+![image-20220328211943479](C:\Users\Lairin\AppData\Roaming\Typora\typora-user-images\image-20220328211943479.png)
 
 <br>
 
 ### 8. AJAX
 
-spring boot에서 서버와 비동기식 통신을 위해 AJAX를 이용할 수 있습니다.
+spring boot에서 서버와 비동기식 통신을 위해 AJAX를 이용할 수 있습니다.  
+기본적인 AJAX 이용법에서 vanilla JS를 통해 POST를 전송하는 방법은 HEAD를 통한 방법과 BODY를 통한 방법으로 두가지가 존재합니다.
 
-기본적인 AJAX 이용법에서 vanilla JS를 통해 POST를 전송하는 방법은 다음과 같습니다.
+HEAD를 통한 방법은 다음과 같습니다.
 
 ```javascript
 httpRequest.open('POST', '/card/test' +
@@ -98,15 +100,61 @@ httpRequest.open('POST', '/card/test' +
     '&tags=' + tags.value);
 ```
 
-form submit와 유사한 형태의 구조로 url을 생성하여 전송합니다.
+form submit와 유사한 형태의 구조로 url을 생성하여 전송합니다.   
+이 경우 사용자의 URL에 직접 드러나기 때문에 내용을 숨겨야하는 경우에는 부적합합니다.
+
+
+
+BODY를 통한 방법은 다음과 같습니다.
+
+```javascript
+categoryHttpRequest.open('POST', encodeURI("/card/categoryChange"));
+categoryHttpRequest.responseType = "json";
+categoryHttpRequest.send(categoryJSON);
+```
+
+send에 전달하고자하는 데이터를 직접 넣어 전송합니다.
+
+
 
 전송된 요청을 컨트롤러에서 처리할 수 있도록 @PostMapping으로 이어주면 작동하는 것이 가능합니다. 
 
 ```java
+@RequestBody
 @PostMapping("/card/test")
-public void test(HttpServletResponse response, CardDto cardDto) {
+public void test(CardDto cardDto) {
     cardService.addCard(cardMapper.toEntity(cardDto));
 }
 ```
 
-여기서 중요한 점은 파라미터에 `HttpServletResponse response`를 추가하여야 return 형식이 void여도 에러없이 작동한다는 부분입니다.
+여기서 중요한 점은 어노테이션에 `@RequestBody`를 추가하여야 return 형식을 자유롭게 사용할 수 있다는 부분입니다.
+
+<br>
+
+### 9. JSON
+
+컨트롤러와 JSON을 통신에 사용할 경우 컨트롤러는  JSON파싱을 진행하여야 합니다.  
+그렇게 JSON 관련 함수들을 사용하기 위하여 gradle을 이용해 다음 의존성을 추가해줍니다.
+
+```gradle
+dependencies {
+	implementation 'org.json:json:20190722'
+}
+```
+
+그런 다음 컨트롤러에 전달된 JSON형식의 데이터를 다음과 같은 방식으로 매핑하여 처리합니다.
+
+```java
+JSONObject jObject = new JSONObject(jsonList);
+ObjectMapper mapper = new ObjectMapper();
+
+List<CategoryDto> insertDtoList = new ArrayList<>();
+JSONArray insertList = jObject.getJSONArray("insert");
+for (int i = 0; i < insertList.length(); i++) {
+    insertDtoList.add(mapper.readValue(insertList.get(i).toString(), CategoryDto.class));
+}
+System.out.println(cardService.addCategories(insertDtoList));
+```
+
+결과적으로 String 형식으로 전달받은 데이터를 JSON 함수들을 이용하여 파싱, 매핑하는 과정을 거치게 됩니다.  
+그렇기 때문에 매퍼에 전달해주는 내용은 꼭 toString()을 사용하여 전달해줘야 에러없이 작동합니다.
