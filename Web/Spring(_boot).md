@@ -81,7 +81,7 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
 
 Entity migration 자동화를 통해 편의성을 도와주는 API입니다.  
 정해진 version 파일을 통해 Entity의 변화를 기록하며 수정할 수 있습니다.  
-![image-20220328211943479](C:\Users\Lairin\AppData\Roaming\Typora\typora-user-images\image-20220328211943479.png)
+![image-20220328211943479](https://user-images.githubusercontent.com/70496139/160398963-d14b2902-d6c4-4c73-b237-5c830cbdf5ce.png)
 
 <br>
 
