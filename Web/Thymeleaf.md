@@ -153,17 +153,17 @@ public String list(Model model) {
   >
   > ```html
   > <!-- 파라미터를 통해 값을 전달 받아 생성자처럼 작동함  -->
-  >    <!-- th:with를 사용하여 고정 파라미터 외의 다른 파라미터를 받을 수 있다.  -->
-  >    <!-- th:id와 class를 이용하여 id와 class를 추가로 설정 할 수 있다.  -->
-  >    <div th:fragment="fragment(id)"
-  >          th:with="content=(${ content } ?: null), script=(${ script } ?: false)"
-  >          class="add-class"
-  >          th:id="${ id }">
-  >        <div class="content" th:if="${content != null}">
-  >            <th:block th:replace="${content}"></th:block>
-  >        </div>
-  >        <script defer th:if="${script}" th:inline="javascript">
-  >            /* script */
-  >        </script>
-  >    </div>
-  >    ```
+  > <!-- th:with를 사용하여 고정 파라미터 외의 다른 파라미터를 받을 수 있다.  -->
+  > <!-- th:id와 class를 이용하여 id와 class를 추가로 설정 할 수 있다.  -->
+  > <div th:fragment="fragment(id)"
+  >       th:with="content=(${ content } ?: null), script=(${ script } ?: false)"
+  >       class="add-class"
+  >       th:id="${ id }">
+  >     <div class="content" th:if="${content != null}">
+  >         <th:block th:replace="${content}"></th:block>
+  >     </div>
+  >     <script defer th:if="${script}" th:inline="javascript">
+  >         /* script */
+  >     </script>
+  > </div>
+  > ```
