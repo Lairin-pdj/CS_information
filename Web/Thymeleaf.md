@@ -14,7 +14,7 @@ gradle 파일에 해당 의존성을 추가하면 사용할 수 있습니다.
 ```gradle
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	}
+}
 ```
 
 <br>
@@ -107,3 +107,63 @@ public String list(Model model) {
   ><p th:if="${target}=='True'" th:text="True"></p>
   ><p th:unless="False"></p>
   >```
+  
+* th:replace, th:insert, th:include
+
+  >모두 특정 코드를 붙여주는 문법이면서 각 문법마다 약간의 특색이 존재한다.
+  >
+  >```html
+  ><footer th:fragment="copy">
+  >  	&copy; 2011 The Good Thymes Virtual Grocery
+  ></footer>
+  >```
+  >
+  >```html
+  ><body>
+  >  	<div th:insert="footer :: copy"></div>
+  >  	<div th:replace="footer :: copy"></div>
+  >  	<div th:include="footer :: copy"></div>
+  ></body>
+  >```
+  >
+  >```html
+  ><body>
+  >    	<!-- insert -->
+  >    	<div>
+  >    		<footer>
+  >      			&copy; 2011 The Good Thymes Virtual Grocery
+  >    		</footer>
+  >  	</div>
+  >    
+  >    	<!-- replace -->
+  >  	<footer>
+  >    		&copy; 2011 The Good Thymes Virtual Grocery
+  >  	</footer>
+  >    
+  >    	<!-- include -->
+  >  	<div>
+  >    		&copy; 2011 The Good Thymes Virtual Grocery
+  >  	</div>
+  ></body>
+  >```
+
+* th:fragment
+
+  > 공통 부분을 fragment로 생성하여 대체하는 문법
+  >
+  > ```html
+  > <!-- 파라미터를 통해 값을 전달 받아 생성자처럼 작동함  -->
+  >    <!-- th:with를 사용하여 고정 파라미터 외의 다른 파라미터를 받을 수 있다.  -->
+  >    <!-- th:id와 class를 이용하여 id와 class를 추가로 설정 할 수 있다.  -->
+  >    <div th:fragment="fragment(id)"
+  >          th:with="content=(${ content } ?: null), script=(${ script } ?: false)"
+  >          class="add-class"
+  >          th:id="${ id }">
+  >        <div class="content" th:if="${content != null}">
+  >            <th:block th:replace="${content}"></th:block>
+  >        </div>
+  >        <script defer th:if="${script}" th:inline="javascript">
+  >            /* script */
+  >        </script>
+  >    </div>
+  >    ```
