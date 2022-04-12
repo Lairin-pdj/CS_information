@@ -71,9 +71,18 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
 
 * JPA
 
-  Entity함수에 Column 어노테이션을 사용하여 세부 내용을 작성한 뒤 Repo의 인터페이스에서 해당 Entity를 템플릿으로 사용하여 JPA를 extends 하여 사용한다.  
-  전체적으로 많은 부분이 자동화되어 처리해주나 필요한 경우 class로 추가 상속하여 함수들을 오버라이딩 하는 것 또한 가능하다.
+  > Entity함수에 Column 어노테이션을 사용하여 세부 내용을 작성한 뒤 Repo의 인터페이스에서 해당 Entity를 템플릿으로 사용하여 JPA를 extends 하여 사용한다.  
+  > 전체적으로 많은 부분이 자동화되어 처리해주나 필요한 경우 class로 추가 상속하여 함수들을 오버라이딩 하는 것 또한 가능하다.
   
+* JPA와 MySQL의 swap 문제
+
+  >기본적으로 unique한 키의 값을 튜플끼리 서로 바꿀 경우 temp를 사용하지 않는 한 duplicate 오류를 발생하게된다.
+  >
+  >이를 막기 위해서는 unique체크를 모든 적용이 끝나고 나서 진행해야하는데 defer를 이용하여 commit 당시의 문제를 해결한다.
+  >
+  >하지만 MySQL의 경우에는 아직까지 defer을 지원하고 있지 않으며, 추후 지원가능성도 낮아보인다.
+  >
+  >이에 따라 unique키의 스왑이 필요한 경우 defer을 지원하는 db를 사용하던가, 전체적인 table의 구조를 이를 고려하여 설계하여야 한다.
 
 <br>
 
@@ -81,7 +90,7 @@ JDBC(Java Database Connectivity)는 기본적으로 자바 API이며 DB접속을
 
 Entity migration 자동화를 통해 편의성을 도와주는 API입니다.  
 정해진 version 파일을 통해 Entity의 변화를 기록하며 수정할 수 있습니다.  
-![image-20220328211943479](https://user-images.githubusercontent.com/70496139/160398963-d14b2902-d6c4-4c73-b237-5c830cbdf5ce.png)
+![image-20220328211943479](C:\Users\Lairin\AppData\Roaming\Typora\typora-user-images\image-20220328211943479.png)
 
 <br>
 
@@ -158,3 +167,30 @@ System.out.println(cardService.addCategories(insertDtoList));
 
 결과적으로 String 형식으로 전달받은 데이터를 JSON 함수들을 이용하여 파싱, 매핑하는 과정을 거치게 됩니다.  
 그렇기 때문에 매퍼에 전달해주는 내용은 꼭 toString()을 사용하여 전달해줘야 에러없이 작동합니다.
+
+<br>
+
+### 10. devtools
+
+여러가지 편의성 기능을 사용할 수 있도록 해주는 라이브러리이다.
+
+다음과 같이 의존성에 추가하여 사용할 수 있다.
+
+```gradle
+dependencies {
+   implementation 'org.springframework.boot:spring-boot-devtools'
+}
+```
+
+spring 개발에 있어 static 파일이나 컨트롤러의 수정마다 리빌드를 눌러주는 것은 시간 효율면에서 상당히 떨어지기 때문에 이를 자동으로 인식하여 변경해줄 수 있다.
+
+아래와 같이 yml파일에 설정하여 사용할 수 있다.  
+ restart는 컨트롤러 및 시스템이 바뀌면 자동 리빌드를 진행하며, livereload는 static파일의 변경을 자동으로 적용시켜준다.
+
+```yml
+devtools:
+  restart:
+    enabled: false
+  livereload:
+    enabled: true
+```
